@@ -1,7 +1,11 @@
 const { Bot, InlineKeyboard } = require('grammy');
+require('dotenv').config();
 
+const bot = new Bot(process.env.BOT_TOKEN);
 
-const bot = new Bot('7344902969:AAGyo1_6VzD5qTlSTis-lrUloC0Ggk46b8o');
+const port = process.env.PORT || 3000;
+
+const debugMode = process.env.DEBUG==='true';
 
 
 const tossCoin = () => (Math.random() < 0.5 ? 'Орел' : 'Решка');
@@ -72,3 +76,5 @@ bot.callbackQuery('end', (ctx) => {
 
 bot.start();
 console.log('Бот запущен...');
+console.log(`сервер запущен на порту:${port}`);
+console.log(`режим откладки:${debugMode ?'включен': 'выключен'}`);
